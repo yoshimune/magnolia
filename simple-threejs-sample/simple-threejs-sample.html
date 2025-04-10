@@ -1,0 +1,54 @@
+<!-- https://ics.media/tutorial-three/quickstart/ -->
+
+<html>
+    <head>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js"
+                }
+            }
+        </script>
+        <script type="module">
+            import * as THREE from 'three';
+
+            // Set size
+            const width = 960;
+            const height = 540;
+
+            // create renderer
+            const renderer = new THREE.WebGLRenderer({
+                canvas: document.querySelector('#myCanvas'),
+            });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(width, height);
+
+            // create scene
+            const scene = new THREE.Scene();
+
+            // create camera
+            const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 5000);
+            camera.position.set(0,0,1000);
+
+            // create cube
+            const geometry = new THREE.BoxGeometry(400, 400, 400);
+            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            // tick 
+            tick();
+            function tick() {
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+
+                requestAnimationFrame(tick);
+            }
+
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas"></canvas>
+    </body>
+</html>
