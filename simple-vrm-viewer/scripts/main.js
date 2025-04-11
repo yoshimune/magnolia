@@ -19,9 +19,14 @@ const scene = new THREE.Scene();
 
 // Create a camera
 const camera = new THREE.PerspectiveCamera(60, sizes.width / sizes.height, 0.1, 5000);
-camera.position.set(0, 1, 5); // Set camera position
+camera.position.set(0, 1, 2.5); // Set camera position
 // clear color
 renderer.setClearColor(0xffffff, 1);
+
+// light
+const light = new THREE.DirectionalLight( 0xffffff, Math.PI );
+light.position.set( 1.0, 1.0, 1.0 ).normalize();
+scene.add( light );
 
 // load vrm 
 const url = 'https://d31xcqb46egav0.cloudfront.net/AvatarSample_I.vrm'; // Replace with your VRM model URL
